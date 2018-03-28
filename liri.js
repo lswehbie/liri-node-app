@@ -19,21 +19,21 @@ var spotify = new Spotify({
   secret: keys.spotify.secret
 });
 
-spotify.search({ type: 'track', query: 'All the Small Things'},
-	function(err, data) {
-		if(err) {
-		console.log('Error Occured:' + err);
-	}
+//spotify.search({ type: 'track', query: 'All the Small Things'},
+	//function(err, data) {
+		//if(err) {
+		//console.log('Error Occured:' + err);
+	//}
 
-	console.log(data);
-});
+	//console.log(data);
+//});
 
 
 var Twitter = require("twitter");
 var client = new Twitter(keys.twitter);
 
 var userInput = process.argv;
-var songOrMovie = "";
+var songMovie = "";
 
 var command = process.argv[2];
 
@@ -89,7 +89,7 @@ function spotifyThisSong() {
 	//If no song is provided then your program will default to "The Sign" by Ace of Base.
 	
 	checkIfMoreThanOneWord();
-	var params = {type: "track", query: songOrMovie, limit: 1};
+	var params = {type: "track", query: songMovie, limit: 1};
 
 	spotify.search(params, function(err, data) {
 		if (err) {
@@ -117,7 +117,7 @@ function movieThis() {
 	checkIfMoreThanOneWord();
 	
 	
-	var queryURL = "http://www.omdbapi.com/?t=" + songOrMovie + "&y=&plot=short&apikey=trilogy";
+	var queryURL = "http://www.omdbapi.com/?t=" + songMovie + "&y=&plot=short&apikey=trilogy";
 
 	//This will output the following information to your terminal/bash window:
 
@@ -159,18 +159,18 @@ function movieThis() {
 function checkIfMoreThanOneWord() {
 
 	if (command == "spotify-this-song" && !process.argv[3]) {
-		songOrMovie = "I Want it That Way";
+		songMovie = "I Want it That Way";
 	}
 
 	if (command == "movie-this" && !process.argv[3]) {
-		songOrMovie = "Mr. Nobody";
+		songMovie = "Mr. Nobody";
 	 }
 
 	for (var i = 3; i < userInput.length; i++) {
 		if (i > 3 && i < userInput.length) {
-			songOrMovie = songOrMovie + "+" + userInput[i];
+			songMovie = songMovie + "+" + userInput[i];
 		} else {
-			songOrMovie += userInput[i];
+			songMovie += userInput[i];
 		}
 	}
 }
@@ -188,7 +188,7 @@ function doWhatItSays() {
 
 		var dataArray = data.split(",");
 		var commandNew = dataArray[0];
-		songOrMovie = dataArray[1];
+		songMovie = dataArray[1];
 
 		switch(commandNew) {
 		case "my-tweets":
