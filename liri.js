@@ -2,7 +2,10 @@
 
 //require("dotenv").config();
 
+require("dotenv").config();
+
 var fs = require("fs");
+
 
 var keys = require("./keys.js");
 
@@ -96,10 +99,10 @@ function spotifyThisSong() {
 			var trackTitle = "'" + data.tracks.items[0].name + "'";
 			var songLink = data.tracks.items[0].external_urls.spotify;
 			var album = data.tracks.items[0].album.name;
-			console.log("Artist: " + artists);
+			console.log("Artist: " + artist);
 			console.log("Song Name: " + trackTitle);
 			console.log("Song Preview: " + songLink);
-			console.log("Album: " + albumName);
+			console.log("Album: " + album);
 
 			appendToFile("\r\nArtist: " + artist + "\r\nTrack Title: " + trackTitle + "\r\nSong Preview: " + songLink +
 				"\r\nAlbum: " + album + "\r\n");
@@ -107,7 +110,7 @@ function spotifyThisSong() {
 	});
 }
 
-debugger;
+//debugger;
 
 function movieThis() {
 
@@ -149,7 +152,7 @@ function movieThis() {
 	});
 }
 
-debugger;
+//debugger;
 
 // function if the title is more than one word 
 
@@ -172,7 +175,7 @@ function checkIfMoreThanOneWord() {
 	}
 }
 
-debugger;
+//debugger;
 
 function doWhatItSays() {
 
@@ -207,7 +210,7 @@ function doWhatItSays() {
 	});
 }
 
-debugger;
+//debugger;
 
 function appendToFile(results) {
 	fs.appendFile("log.txt", results, function(err) {
