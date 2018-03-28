@@ -32,7 +32,7 @@ var spotify = new Spotify({
 var Twitter = require("twitter");
 var client = new Twitter(keys.twitter);
 
-var userInput = process.argv;
+var user = process.argv;
 var songMovie = "";
 
 var command = process.argv[2];
@@ -64,9 +64,9 @@ switch(command) {
 function blursomeTweets() {
 
 	//This will show your last 20 tweets and when they were created at in your terminal/bash window.
-	var params = {screen_name: "blursome", count: 20};
+	var para = {screen_name: "blursome", count: 20};
 
-	client.get("statuses/user_timeline", params, function(error, tweets, response) {
+	client.get("statuses/user_timeline", para, function(error, tweets, response) {
 		if (error) {
 			console.log(error);
 		} else {
@@ -88,10 +88,10 @@ function spotifyThisSong() {
 
 	//If no song is provided then your program will default to "The Sign" by Ace of Base.
 	
-	checkIfMoreThanOneWord();
-	var params = {type: "track", query: songMovie, limit: 1};
+	titleMoreThanOneWord();
+	var para = {type: "track", query: songMovie, limit: 1};
 
-	spotify.search(params, function(err, data) {
+	spotify.search(para, function(err, data) {
 		if (err) {
 			console.log("Error occured: " + err);
 		} else {
@@ -114,7 +114,7 @@ function spotifyThisSong() {
 
 function movieThis() {
 
-	checkIfMoreThanOneWord();
+	titleMoreThanOneWord();
 	
 	
 	var queryURL = "http://www.omdbapi.com/?t=" + songMovie + "&y=&plot=short&apikey=trilogy";
@@ -156,7 +156,7 @@ function movieThis() {
 
 // function if the title is more than one word 
 
-function checkIfMoreThanOneWord() {
+function titleMoreThanOneWord() {
 
 	if (command == "spotify-this-song" && !process.argv[3]) {
 		songMovie = "I Want it That Way";
@@ -166,11 +166,11 @@ function checkIfMoreThanOneWord() {
 		songMovie = "Mr. Nobody";
 	 }
 
-	for (var i = 3; i < userInput.length; i++) {
-		if (i > 3 && i < userInput.length) {
-			songMovie = songMovie + "+" + userInput[i];
+	for (var i = 3; i < user.length; i++) {
+		if (i > 3 && i < user.length) {
+			songMovie = songMovie + "+" + user[i];
 		} else {
-			songMovie += userInput[i];
+			songMovie += user[i];
 		}
 	}
 }
