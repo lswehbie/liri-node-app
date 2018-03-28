@@ -5,8 +5,24 @@ var fs = require("fs");
 var keys = require("./keys.js");
 require("dotenv").config();
 
-var Spotify = requires(keys.spotify);
-var spotify = new Spotify(keys.spotify);
+var Spotify = require('node-spotify-api');
+//var spotify = new Spotify(keys.spotify);
+
+var spotify = new Spotify({
+  id: skeys.spotify.id,
+  secret: keys.spotify.secret
+});
+
+spotify.search({ type: 'track', query: 'All the Small Things'},
+	function(err, data) {
+		if(err) {
+		console.log('Error Occured:' + err);
+	}
+
+	console.log(data);
+});
+
+
 
 var Twitter = require("twitter");
 var client = new Twitter(keys.twitter);
