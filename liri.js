@@ -5,7 +5,7 @@ var fs = require("fs");
 var keys = require("./keys.js");
 require("dotenv").config();
 
-var Spotify = require(keys.spotify);
+var Spotify = requires(keys.spotify);
 var spotify = new Spotify(keys.spotify);
 
 var Twitter = require("twitter");
