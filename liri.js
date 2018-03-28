@@ -151,3 +151,52 @@ function checkIfMoreThanOneWord() {
 		}
 	}
 }
+
+debugger;
+
+function doWhatItSays() {
+
+	fs.readFile("random.txt", "utf8", function(error, data) {
+
+		
+		if (error) {
+			return console.log(error);
+		}
+
+		var dataArray = data.split(",");
+		var commandNew = dataArray[0];
+		songOrMovie = dataArray[1];
+
+		switch(commandNew) {
+		case "my-tweets":
+		blursomeTweets();
+		break;
+
+		case "spotify-this-song":
+		spotifyThisSong();
+		break;
+
+		case "movie-this":
+		movieThis();
+		break;
+
+		case "do-what-it-says":
+		doWhatItSays();
+		break;
+		}
+	});
+}
+
+debugger;
+
+function appendToFile(results) {
+	fs.appendFile("log.txt", results, function(err) {
+
+		
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("Success!");
+		}
+	})
+}
