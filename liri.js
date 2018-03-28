@@ -1,15 +1,18 @@
 // Load the fs package to read and write
 
+//require("dotenv").config();
+
 var fs = require("fs");
 
 var keys = require("./keys.js");
-require("dotenv").config();
+
+
 
 var Spotify = require('node-spotify-api');
 //var spotify = new Spotify(keys.spotify);
 
 var spotify = new Spotify({
-  id: skeys.spotify.id,
+  id: keys.spotify.id,
   secret: keys.spotify.secret
 });
 
@@ -23,7 +26,6 @@ spotify.search({ type: 'track', query: 'All the Small Things'},
 });
 
 
-
 var Twitter = require("twitter");
 var client = new Twitter(keys.twitter);
 
@@ -31,6 +33,8 @@ var userInput = process.argv;
 var songOrMovie = "";
 
 var command = process.argv[2];
+
+var request = require("request");
 
 // We will then create a switch-case statement (if-else would also work).
 // The switch-case will direct which function gets run.
